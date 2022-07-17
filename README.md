@@ -1,7 +1,7 @@
 
 # GUIA DO ZIPSENDER - Fatia independente, envia pro Telegram
 
-Versão v100
+Versão v101
 
 ## Sumário
 
@@ -13,6 +13,7 @@ Versão v100
     - [1.1 python](#11-python)
       - [Para obter o python:](#para-obter-o-python)
     - [1.2 Compactadores-Winrar ou 7zip](#12-compactadores-winrar-ou-7zip)
+      - [Adicionar 7zip às variáveis de ambiente](#adicionar-7zip-às-variáveis-de-ambiente)
   - [2 Preparação os utilitários](#2-preparação-os-utilitários)
     - [1 - Modo simples - Kit configurado em ptbr](#1---modo-simples---kit-configurado-em-ptbr)
     - [2 - Modo avançado - Construa e configure do zero](#2---modo-avançado---construa-e-configure-do-zero)
@@ -36,28 +37,36 @@ O uso dos softwares em conjunto para qualquer objetivo, é por uma decisão indi
 
 ## Introdução
 
-Este tutorial ensinará como disponibilizar um fluxo contínuo de processo e postagem de pastas de arquivos no telegram de modo fatiado em partes independentes.
+Este tutorial ensinará como executar um fluxo contínuo de postagem no telegram, de pastas de arquivos fatiadas em partes independentes.
 
 Também há funções especiais e opcionais, como:
-- Envio dos arquivos em formato de 'album', agrupado em até 10 arquivos.
+- Envio dos arquivos em formato de "álbum", agrupado em até 10 arquivos.
 - Sticker separador de projetos
 - Customização de descrição da primeira parte do projeto
 - Postagem de Relatório de Conteúdo em txt, que mapeia todos os arquivos internos de cada "parte independente"
 
-O "fluxo contínuo" torna todo o processo eficiente, pois enquanto a ferramenta executa de forma contínua, o usuário apenas depositas novas pastas no local configurado como início e todo o processo de fatiamento e envio é realizado automaticamente e indefinidamente.
+O "fluxo contínuo" torna todo o processo eficiente, pois enquanto a ferramenta executa de forma contínua, o usuário apenas deposita novas pastas no "local configurado como início" e todo o processo de fatiamento e envio é realizado automaticamente e indefinidamente.
 
-Uma "parte independente" é capaz de ser extraída sem depender das demais partes que compõe o conjunto da pasta.
+Uma "parte independente" é capaz de ser extraída sem depender das outras partes que compõe o conjunto da pasta.
 
-O processo foi construído para ser eficiente para quem upa e para economizar espaço em disco do usuário que baixar os materiais. Ainda que um projeto tenha centenas de GBs, o usuário que baixa precisa ter apenas o espaço de armazenamento suficiente para baixar e extrair apenas 1 parte por vez, ou seja, menos de 4 gbs de espaço livre em disco.
+O processo foi construído para ser eficiente oara quem upa os arquivos. E para ser cômodo para para quem baixa os arquivos, pode não exige muito espaço em disco do usuário que baixar os materiais. Ainda que um projeto tenha centenas de GBs, o usuário que baixa precisa ter apenas o espaço de armazenamento suficiente para baixar e extrair apenas 1 parte por vez. Ou seja, o usuário precisa ter menos de 4 gbs de espaço livre em disco para pouco a pouco a pouco consumir acessar projetos com centenas de gbs!
+
+Basta baixar uma parte, extrair, ler/assistir/consumir, apagar do disco e repetir o processo para as demais partes. Essa é a praticidade de um conjunto de arquivos fatiado em modo independente!
 
 ## 1 Preparando o ambiente
 
 O Zipsender é o app que facilita a postagem de pastas no telegram de forma fatiada em partes independentes.
 
-Por baixo do cobertor, existem 2 apps especialistas: O `Zipind` e o `telegram_filesender`.
+Por trás das cortinas, existem 2 apps especialistas: O `Zipind` e o `telegram_filesender`.
 
-Para esses apps funcionarem, é necessário usar o sistema operacional Windows (10 ou 11 de 64 bits) e instalar algumas dependências:
-O python e o Compactador.
+Para esses apps funcionarem, é necessário usar o sistema operacional Windows (10 ou 11 de 64 bits) e instalar algumas dependências: O **python** e o **Compactador**.
+
+> ATENÇÃO\
+Antes de tudo, abra o Windows Explorer e garanta a exibição das extensões dos arquivos. Isso aumenta sua segurança, por evita o risco de no futuro você executar por acidente um vírus .exe achando que é uma foto .jpg. É uma função importante e bem fácil de ativar
+- Vá no menu "Exibir" e então marque o checkbox “Extensões de nomes de arquivos”.
+
+![](images/winexplorer_show_extension.png)
+
 
 ### 1.1 python
 Python é uma linguagem de programação de propósito genérico ao qual o Zipsender e seus apps dependentes foram construídos.
@@ -84,8 +93,46 @@ App [7zip](https://www.7-zip.org/download.html)
 
 Configuração:
 - Instale o compactador que preferir ou ambos.
-- Adicione a pasta do app às variáveis de ambiente seguindo os mesmos passos realizados anteriormente quando se instalou o ffmpeg, no tópico `Adicionar pasta às variáveis de ambiente`.
 
+#### Adicionar 7zip às variáveis de ambiente
+
+Caso tenha instalado o 7zip, é necessário adicionar a pasta do app às variáveis de ambiente. Não é necessário fazer essa etapa caso você tenha instalado apenas o Winrar.
+
+Será ensinado duas formas de fazer isso:
+- A rápida, via terminal
+- E simpática, via interface gráfica (GUI)
+
+Execute apenas uma das formas.
+
+**Rápido: Via Terminal**
+
+- Abrir Terminal com privilégio de admin
+  - `[WIN]+R, cmd, [CTRL]+[SHIFT]+[ENTER]`
+- Entrar com o comando: `setx /M path "%path%;{path_folder}"`
+	- Substituir `{path_folder}` pelo link da pasta a ser adicionada nas variáveis de sistema
+	- Exemplo caso a pasta esteja em `C:\myapp`
+		- `setx /M path "%path%;C:\myapp"`
+
+
+**Simpático: Via interface gráfica**
+- Para um aplicativo ser acessável via terminal a partir de qualquer local do seu sistema, busque o termo `variáveis de ambiente` na ferramenta de busca do windows e acesse a aplicação `editar as variáveis de ambiente do sistema`.
+- Na aplicação que será aberta, acesse a guia `Avançado` e clique no botão `Variáveis de Ambiente`.
+
+![](images/variaveis_de_ambiente.png)
+
+- No form "Variáveis de Ambiente", clique no nome `Path` na coluna `Variável`. Em seguida clique no botão `Editar`.
+
+![](images/var_amb_editar_path.png)
+
+- No form "Editar a variável de ambiente", clique no botão "Novo" e adicione o caminho da pasta onde está o executável do app que você deseja tornar acessível via terminal. Seja a pasta do 7zip e/ou a pasta do Winrar.
+
+- Para evitar erros, logo após adicionar o novo caminho, selecione o novo caminho adicionado, em seguida clique no botão `Mover para Cima`.
+- Esta ação dará ao path criado, maior prioridade em relação aos demais paths da lista.
+
+- Parabéns. O app foi configurado como variável de sistema!
+- Para verificar se está tudo funcionando bem, basta abrir o CMD do Windows: (`[win]+[r], cmd, [enter]`)
+- Digite `7z` ou `7za` (um dos dois funciona, dependendo da versão do seu windows) no terminal aberto e tecle `[Enter]`. Deve aparecer informações sobre o programa.
+- Não se desespere com a quantidade de informação na tela. hehe É só um teste para saber se o comando está sendo reconhecido. Pode fechar a janela do terminal. :)
 
 ## 2 Preparação os utilitários
 
@@ -204,7 +251,9 @@ Agora sim, poderemos configurar:
 - Será aberto um `terminal` sem nenhuma informação na tela. Assim que a esteira de empacotamento finalizar a geração dos arquivos fatiados de algum projeto, esta esteira de envio detectará o projeto e começará o envio para o telegram!
 
 - Na primeira vez que você for usar o zipsender, será preciso autenticar uma conexão com o telegram. Mas será só da primeira vez! E depois nunca mais. :) Autenticar é simple, segue os passos:
-  - Aparecerá uma mensagem pedindo o número de seu telefone em formato internacional. Com prefixo `+55` para o caso de telefone brasileiro, seguido do DDD local e seu número de telefone.
+  > `"Enter phone number or bot token:"`
+  - Aparecerá esta mensagem pedindo o número de seu telefone em formato internacional.
+  - Digite seu número de telefone com prefixo `+55` para o caso de telefone brasileiro, seguido do DDD local e seu número de telefone.
     - Exemplo: Para telefone de São Paulo, com ddd 11, deverá ser digitado algo como: `+5511995429405`
   - Na mensagem perguntando se o número está correto, digite `y`.
   - Se você tiver 'segurança de 2 fatores' (2fa) ativado na sua conta, será solicitado sua senha.
