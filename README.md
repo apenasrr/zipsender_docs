@@ -1,7 +1,7 @@
 
 # GUIA DO ZIPSENDER - Fatia independente, envia pro Telegram
 
-Versão v101
+Versão v102
 
 ## Sumário
 
@@ -14,7 +14,7 @@ Versão v101
       - [Para obter o python:](#para-obter-o-python)
     - [1.2 Compactadores-Winrar ou 7zip](#12-compactadores-winrar-ou-7zip)
       - [Adicionar 7zip às variáveis de ambiente](#adicionar-7zip-às-variáveis-de-ambiente)
-  - [2 Preparação os utilitários](#2-preparação-os-utilitários)
+  - [2 Localização](#2-localização)
     - [1 - Modo simples - Kit configurado em ptbr](#1---modo-simples---kit-configurado-em-ptbr)
     - [2 - Modo avançado - Construa e configure do zero](#2---modo-avançado---construa-e-configure-do-zero)
       - [Como baixar](#como-baixar)
@@ -40,6 +40,7 @@ O uso dos softwares em conjunto para qualquer objetivo, é por uma decisão indi
 Este tutorial ensinará como executar um fluxo contínuo de postagem no telegram, de pastas de arquivos fatiadas em partes independentes.
 
 Também há funções especiais e opcionais, como:
+- Postagem automática de Imagem de capa e arquivo de texto com descrição
 - Envio dos arquivos em formato de "álbum", agrupado em até 10 arquivos.
 - Sticker separador de projetos
 - Customização de descrição da primeira parte do projeto
@@ -47,9 +48,9 @@ Também há funções especiais e opcionais, como:
 
 O "fluxo contínuo" torna todo o processo eficiente, pois enquanto a ferramenta executa de forma contínua, o usuário apenas deposita novas pastas no "local configurado como início" e todo o processo de fatiamento e envio é realizado automaticamente e indefinidamente.
 
-Uma "parte independente" é capaz de ser extraída sem depender das outras partes que compõe o conjunto da pasta.
+Uma "parte independente" é capaz de ser extraída sem depender das outras partes que compõem o conjunto da pasta.
 
-O processo foi construído para ser eficiente oara quem upa os arquivos. E para ser cômodo para para quem baixa os arquivos, pode não exige muito espaço em disco do usuário que baixar os materiais. Ainda que um projeto tenha centenas de GBs, o usuário que baixa precisa ter apenas o espaço de armazenamento suficiente para baixar e extrair apenas 1 parte por vez. Ou seja, o usuário precisa ter menos de 4 gbs de espaço livre em disco para pouco a pouco a pouco consumir acessar projetos com centenas de gbs!
+O processo foi construído para ser eficiente para quem upa os arquivos. E para ser cômodo para quem baixa os arquivos, pode não exigir muito espaço em disco do usuário que baixar os materiais. Ainda que um projeto tenha centenas de GBs, o usuário que baixa precisa ter apenas o espaço de armazenamento suficiente para baixar e extrair apenas 1 parte por vez. Ou seja, o usuário precisa ter menos de 4 gbs de espaço livre em disco para pouco a pouco a pouco consumir projetos com centenas de gbs!
 
 Basta baixar uma parte, extrair, ler/assistir/consumir, apagar do disco e repetir o processo para as demais partes. Essa é a praticidade de um conjunto de arquivos fatiado em modo independente!
 
@@ -57,9 +58,7 @@ Basta baixar uma parte, extrair, ler/assistir/consumir, apagar do disco e repeti
 
 O Zipsender é o app que facilita a postagem de pastas no telegram de forma fatiada em partes independentes.
 
-Por trás das cortinas, existem 2 apps especialistas: O `Zipind` e o `telegram_filesender`.
-
-Para esses apps funcionarem, é necessário usar o sistema operacional Windows (10 ou 11 de 64 bits) e instalar algumas dependências: O **python** e o **Compactador**.
+Primeiramente é necessário usar o sistema operacional Windows (10 ou 11 de 64 bits) e instalar algumas dependências: O **python** e o **Compactador**.
 
 > ATENÇÃO\
 Antes de tudo, abra o Windows Explorer e garanta a exibição das extensões dos arquivos. Isso aumenta sua segurança, por evita o risco de no futuro você executar por acidente um vírus .exe achando que é uma foto .jpg. É uma função importante e bem fácil de ativar
@@ -115,7 +114,7 @@ Execute apenas uma das formas.
 
 
 **Simpático: Via interface gráfica**
-- Para um aplicativo ser acessável via terminal a partir de qualquer local do seu sistema, busque o termo `variáveis de ambiente` na ferramenta de busca do windows e acesse a aplicação `editar as variáveis de ambiente do sistema`.
+- Para um aplicativo ser acessível via terminal a partir de qualquer local do seu sistema, busque o termo `variáveis de ambiente` na ferramenta de busca do windows e acesse a aplicação `editar as variáveis de ambiente do sistema`.
 - Na aplicação que será aberta, acesse a guia `Avançado` e clique no botão `Variáveis de Ambiente`.
 
 ![](images/variaveis_de_ambiente.png)
@@ -134,10 +133,10 @@ Execute apenas uma das formas.
 - Digite `7z` ou `7za` (um dos dois funciona, dependendo da versão do seu windows) no terminal aberto e tecle `[Enter]`. Deve aparecer informações sobre o programa.
 - Não se desespere com a quantidade de informação na tela. hehe É só um teste para saber se o comando está sendo reconhecido. Pode fechar a janela do terminal. :)
 
-## 2 Preparação os utilitários
+## 2 Localização
 
 > Importante\
-> Os utilitários devem ser colocados dentro de uma pasta na raiz de uma unidade do seu pc. Ex.: `D:/zipsender_suite`\
+> A aplicação deve ser colocada dentro de uma pasta na raiz de uma unidade do seu pc. Ex.: `D:/zipsender`\
 > Este detalhe evita que existam erros de [max_path](https://docs.microsoft.com/pt-br/windows/win32/fileio/maximum-file-path-limitation) durante o processamento dos projetos.
 
 Você pode adquirir o zipsender pelo modo simples ou avançado.
@@ -152,55 +151,45 @@ Recomendamos o modo simples para quem não deseja investir tempo aprendendo o pr
 
 ### 2 - Modo avançado - Construa e configure do zero
 
-Baixe os utilitários nos seguintes links:
+Baixe a aplicação:
 
-1. Zipind: [https://github.com/apenasrr/zipind](https://www.google.com/url?q=https://github.com/apenasrr/zipind&sa=D&ust=1608417945410000&usg=AOvVaw22EBq1e5Hj2e1qtxo5p8lj)
-2. Telegram_filesender: [https://github.com/apenasrr/Telegram_filesender](https://github.com/apenasrr/Telegram_filesender)
-3. Zipsender: [https://github.com/apenasrr/zipsender](https://github.com/apenasrr/zipsender)
+1. Zipsender: [https://github.com/apenasrr/zipsender](https://github.com/apenasrr/zipsender)
 
 #### Como baixar
 - Clique no botão “Code” e, em seguida,
 - Clique em “Download ZIP”.
-- Repita o procedimento na página de cada utilitário
 
 ![](images/github_download.png)
 
-- Extraia todos os utilitários na pasta criada para a suite.
-- Renomeie as pastas de cada utilitário, tirando o `“-master”` do nome cada uma. O resultado final deve ser esse:
+- Extraia o utilitário na pasta criada.
 
-![](images/folder_suite_zipsender.png)
 ```
 CURIOSIDADE
 
-O passo acima só foi necessário porque os utilitários foram baixados através do botão 'code' no site do github.
-Se tivessem sido baixados por linha comando (git clone), as pastas apareceriam da forma desejada.
+Você pode baixar o repositório por linha comando (git clone).
 Para saber mais: https://docs.github.com/pt/github/creating-cloning-and-archiving-repositories/cloning-a-repository
 ```
-
-`ATENÇÃO: OS PASSOS A SEGUIR DEVEM SER REPETIDOS EM TODOS OS UTILITÁRIOS.`
 
 ### Atualizações de dependências
 O python é uma linguagem de programação, onde durante a atividade de programação, vários 'atalhos' são pegos através do uso de scripts que foram criados por outras pessoas. Esses scripts são chamados de 'Libs' (bibliotecas).
 
-Cada utilitário composto pelo Zipsender possui diversas libs requeridas, que precisamos baixar e atualizar.
+O Zipsender possui diversas libs requeridas, que precisamos baixar e atualizar.
 
 Para facilitar o processo, tudo foi resumido à execução de 1 arquivo.
-- Para cada pasta de utilitário, abra sua pasta e execute o arquivo `update_libs.bat`.
+- Abra a pasta do zipsender e execute o arquivo `update_libs.bat`.
 
 ![](images/image30.png)
 
 
 ## 3 Como ativar o fluxo contínuo
 
-Agora que todas as ferramentas estão prontas, é hora de utilizá-las.
-
-- Acesse a pasta do Zipsender e se certifique que existe uma pasta chamada '1-tozip' dentro dela. Se não tiver, crie. Ela será o local de início do fluxo de processo.
-- Execute o arquivo "`zipsender_zip.bat`”
+- Acesse a pasta do Zipsender e execute o arquivo "`zipsender_zip.bat`”.
+- Note que apareceu uma pasta chamada `1-tozip`, `2-zipped`, `3-toupload` e `4-uploaded`, que representam cada etapa da fila de processo.
 - Será aberto um `terminal` sem nenhuma informação na tela. Isso é normal, pois não há projeto autorizado no local de início do processo.
 
 ### 3.1 - Ativando a esteira automática de empacotamento
 
-- Mova a pasta do projeto que você deseja fatiar e enviar para o telegram, para o local configurado com início do processo. Atualmente é a pasta '1-tozip' dentro da pasta do zipsender.
+- Mova a pasta do projeto que você deseja fatiar e enviar para o telegram, para o local configurado com início do processo. Atualmente é a pasta `1-tozip` dentro da pasta do zipsender.
 - Renomeie a pasta do projeto adicionando um sublinhado como primeiro caracter do nome da pasta. Ou seja, se a pasta se chamava "`minhas coisas-2020`", ela deverá ser renomeada para "`_minhas coisas-2020`".
 - Volte para a janela do terminal do `zipsender_zip` e note que automaticamente o projeto foi identificado e começou a ser processado. Depois de processado, os arquivos empacotados em modo independente serão movidos para a pasta `3-toupload`. Já a pasta original do projeto será movida para a pasta `2-zipped`.
 
@@ -208,7 +197,7 @@ Agora que todas as ferramentas estão prontas, é hora de utilizá-las.
 
 O zipsender envia automaticamente e indefinidamente os projetos empacotados e fatiados para um canal ou grupo do telegram.
 
-Para fazer envio, é necessário estabelecer uma conexão entre o zipsender e o telegram. Para isso precisamos configurar o token da sua conta.
+Para fazer envio, é necessário estabelecer uma conexão entre o zipsender e o telegram. Para isso precisamos gerar as credenciais de acesso via API da sua conta do telegram.
 
 #### Configuração de token
 Para se conectar ao Telegram via API, é necessário obter um `api_id` e um `api_hash`.\
@@ -219,17 +208,11 @@ Mas não se preocupe, só é necessário seguir essas etapas uma vez na vida:
     - Exemplo: Para telefone de São Paulo, com ddd 11, deverá ser digitado algo como: `+5511995429405`
   - Preencha o formulário e então aparecerá seus códigos de `api_id` e `api_hash`
   - Para assistir o processo em detalhes, assista [este vídeo](https://www.youtube.com/watch?v=8naENmP3rg4) que exemplifica tudo rapidamente.
-- Após obter sua `api_id` e `api_hash`
-- Na pasta do Telegram_filesender, abra o arquivo `credentials.py` em qualquer editor de texto, como o notepad.
-- Preencha as flags `api_id` e `api_hash` com os dados que você salvou. Semelhante ao exemplo abaixo:
-  - `api_id = 1111111`
-  - `api_hash = "sKwrdX7tb2xFDkPU9h0AsKwrdX7tb2xF"`
-- Os valores informados acima são apenas exemplos. Os valores são inválidos.
-- Salve e feche o arquivo
+- Após obter sua `api_id` e `api_hash`, guarde em um **local seguro**. Pois no futuro você poderá precisar delas para se relogar. Também essas credenciais são semelhantes a usuário-senha da sua conta, então **não compartilha com ninguém**!
 
 #### Configuração do grupo/canal destino
 
-Para determinar o destino do upload, você precisa obter o chat_id do grupo/canal.
+Para determinar o destino do upload, você precisa obter o `chat_id` do grupo/canal que você deseja depositar os arquivos.
 
 Existem várias formas de obter o chat_id de um canal. Mostraremos duas delas:
 - Usando o telegram client [Kotatogram](https://kotatogram.github.io/download/):
@@ -243,21 +226,23 @@ Existem várias formas de obter o chat_id de um canal. Mostraremos duas delas:
 
 Agora sim, poderemos configurar:
 - Abra o arquivo `config.ini` presente na pasta do zipsender.
-- Cole o chat id do seu canal/grupo na variável chat_id do arquivo.
+- Cole o chat id do seu canal/grupo na variável `chat_id` do arquivo.
 
 #### De volta a esteira de envio
 
 - Execute o arquivo "`zipsender_send.bat`”
-- Será aberto um `terminal` sem nenhuma informação na tela. Assim que a esteira de empacotamento finalizar a geração dos arquivos fatiados de algum projeto, esta esteira de envio detectará o projeto e começará o envio para o telegram!
-
-- Na primeira vez que você for usar o zipsender, será preciso autenticar uma conexão com o telegram. Mas será só da primeira vez! E depois nunca mais. :) Autenticar é simple, segue os passos:
+- Será aberto um `terminal`.
+- Se for a primeira vez que você estiver executando, será preciso autenticar uma conexão com o telegram. Mas será só da primeira vez! E depois nunca mais. :) Autenticar é simple, segue os passos:
+  - Informe seu `api_id` e `api_hash`.
   > `"Enter phone number or bot token:"`
   - Aparecerá esta mensagem pedindo o número de seu telefone em formato internacional.
   - Digite seu número de telefone com prefixo `+55` para o caso de telefone brasileiro, seguido do DDD local e seu número de telefone.
     - Exemplo: Para telefone de São Paulo, com ddd 11, deverá ser digitado algo como: `+5511995429405`
   - Na mensagem perguntando se o número está correto, digite `y`.
-  - Se você tiver 'segurança de 2 fatores' (2fa) ativado na sua conta, será solicitado sua senha.
-
+  - Será solicitado um código de autenticação que o telegram enviou no seu app do celular/desktop. Confira lá e digite no terminal.
+  - Se você tiver 'segurança de 2 fatores' (2fa) ativado na sua conta, será solicitado sua senha pessoal.
+  - Tendo realizado a conexão, repare que apareceu o arquivo `user.session` na pasta do zimatise. Este arquivo representa a ponte de conexão do zipsender com sua conta do telegram. Enquanto ele estiver válido, você não precisará mais digitar api_id e api_hash para usar o zipsender. Caso ele seja deletado, o zipsender será incapaz de se conectar com sua conta do telegram e um novo processo de conexão será necessário. Suas credenciais não serão salvas em local algum.
+- Com a conexão configurada, quando a esteira de empacotamento (zipsender_zio.bat) finalizar a geração dos arquivos fatiados de algum projeto, esta esteira de envio (zipsender_send) detectará o projeto e começará o envio para o telegram!
 
 Cumprindo bem todos os passos anteriores, será questão de tempo para o projeto começar a aparecer no grupo/canal destino em fatias independentes.
 
@@ -274,7 +259,13 @@ Agora tudo será enviado com o tempo. Parabéns! \ o /
 
 ## Customização e maiores detalhes
 
-O zipsender é bem customizável. Vamos passar rapidamente pelas variáveis do arquivo "`config.ini`" que podem ser customizadas.
+O zipsender é bem customizável. A descrição do primeiro arquivo de cada projeto pode ter seu padrão definido pelo arquivo `custom_description.txt`.
+
+Se a pasta do projeto contiver uma imagem chamada `cover` (seja arquivo jpg, png ou gif), ela será identificada como Capa e automaticamente postada ao topo do envio.
+
+Se a pasta do projeto contiver um arquivo de texto chamado `description.txt`, ele será identificado como Descrição e automaticamente postado abaixo da capa na fila de envio.
+
+Outras customizações podem ser realizadas pelo arquivo `config.ini`. Vamos passar rapidamente pelas variáveis deste arquivo que podem ser customizadas.
 
 folder_tozip = `C:\#ZS` # Local da pasta de início do processo.
 > Recomendo esta variável seja alterada para uma pasta na raiz de sua unidade de disco.\
