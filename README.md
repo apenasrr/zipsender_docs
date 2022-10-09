@@ -1,7 +1,7 @@
 
 # GUIA DO ZIPSENDER - Fatia independente, envia pro Telegram
 
-Versão v102
+Versão v103
 
 ## Sumário
 
@@ -9,19 +9,20 @@ Versão v102
   - [Sumário](#sumário)
   - [Importante](#importante)
   - [Introdução](#introdução)
-  - [1 Preparando o ambiente](#1-preparando-o-ambiente)
-    - [1.1 python](#11-python)
+  - [1 Com chocolatey é mais gostoso](#1-com-chocolatey-é-mais-gostoso)
+  - [2 Instalação manual](#2-instalação-manual)
+    - [2.1 python](#21-python)
       - [Para obter o python:](#para-obter-o-python)
-    - [1.2 Compactadores-Winrar ou 7zip](#12-compactadores-winrar-ou-7zip)
+    - [2.2 Compactadores-Winrar ou 7zip](#22-compactadores-winrar-ou-7zip)
       - [Adicionar 7zip às variáveis de ambiente](#adicionar-7zip-às-variáveis-de-ambiente)
-  - [2 Localização](#2-localização)
-    - [1 - Modo simples - Kit configurado em ptbr](#1---modo-simples---kit-configurado-em-ptbr)
-    - [2 - Modo avançado - Construa e configure do zero](#2---modo-avançado---construa-e-configure-do-zero)
+  - [3 Localização](#3-localização)
+    - [3.1 - Modo simples - Kit configurado em ptbr](#31---modo-simples---kit-configurado-em-ptbr)
+    - [3.2 - Modo avançado - Construa e configure do zero](#32---modo-avançado---construa-e-configure-do-zero)
       - [Como baixar](#como-baixar)
     - [Atualizações de dependências](#atualizações-de-dependências)
-  - [3 Como ativar o fluxo contínuo](#3-como-ativar-o-fluxo-contínuo)
-    - [3.1 - Ativando a esteira automática de empacotamento](#31---ativando-a-esteira-automática-de-empacotamento)
-    - [3.2 - Ativando a esteira automática de envio](#32---ativando-a-esteira-automática-de-envio)
+  - [4 Como ativar o fluxo contínuo](#4-como-ativar-o-fluxo-contínuo)
+    - [4.1 - Ativando a esteira automática de empacotamento](#41---ativando-a-esteira-automática-de-empacotamento)
+    - [4.2 - Ativando a esteira automática de envio](#42---ativando-a-esteira-automática-de-envio)
       - [Configuração de token](#configuração-de-token)
       - [Configuração do grupo/canal destino](#configuração-do-grupocanal-destino)
       - [De volta a esteira de envio](#de-volta-a-esteira-de-envio)
@@ -54,9 +55,61 @@ O processo foi construído para ser eficiente para quem upa os arquivos. E para 
 
 Basta baixar uma parte, extrair, ler/assistir/consumir, apagar do disco e repetir o processo para as demais partes. Essa é a praticidade de um conjunto de arquivos fatiado em modo independente!
 
-## 1 Preparando o ambiente
-
 O Zipsender é o app que facilita a postagem de pastas no telegram de forma fatiada em partes independentes.
+
+Ele pode ser usado em sistema operacional Windows (10 ou 11 de 64 bits), linux e tem por dependência, os softwares:
+O Python, e o Compactador.
+
+## 1 Com chocolatey é mais gostoso
+
+Chocolatey é um gerenciador de pacote para sistema operacional Windows. Com ele, podemos instalar todos os softwares necessários por comandos no terminal, sem precisar entrar em cada site, fazer downloads e instalar cada aplicação manualmente. Ele permite instalar diversos softwares numa velocidade incrível. :)
+
+**Instalar o chocolatey**
+
+Assim como explicado na [página de instalação](https://chocolatey.org/install) do chocolatey, abra o powershell do windows com privilégio de administrador e execute o comando abaixo:
+
+`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
+
+Caso você não saiba abrir o powershell:
+1. Aperte a tecla windows (fica geralmente entre control e alt da esquerda)
+2. Digite `powershell`
+3. Clique com o botão direito no ícone do windows powershell
+4. Clique na opção "Executar como administrador"
+
+O chocolatey só será instalado adequadamente se você executar o powershell com privilégio de administrador.
+
+**Instalar os pré-requisitos**
+
+```
+choco install python -y
+choco install git -y
+choco install 7zip -y
+choco install advanced-renamer -y
+```
+
+Abra o terminal do windows com privilégio administrador e execute cada um dos comandos acima.
+
+É fortemente recomendado a instalação do app "advanced renamer", que é um aplicativo que renomeia arquivos e pastas em lote. No uso do Zipsender você sentirá necessidade de renomear diversos arquivos e pastas, onde esta aplicação deixará tudo muito mais rápido e fácil.
+
+**Baixar o Zipsender**
+
+1. Crie uma pasta vazia chamada "Zipsender" na raiz do seu HD. Entre nela.
+2. Digite `CTRL+L` no windows explorer.
+3. Digite `cmd` na barra de endereço e tecle enter para abrir o terminal dentro da pasta do Zipsender.
+4. Execute cada um dos comandos abaixo
+
+```
+git clone https://github.com/apenasrr/zipsender
+cd zipsender
+update_libs.bat
+```
+
+Agora que o Zipsender já está baixado, você pode pular para o tópico [4 Como ativar o fluxo contínuo](#4-como-ativar-o-fluxo-contínuo).
+
+Mas caso deseje conhecer mais um pouco sobre cada pré-requisitos e seu processo manual de instalação e configuração, tenha uma boa leitura. :p
+
+## 2 Instalação manual
+
 
 Primeiramente é necessário usar o sistema operacional Windows (10 ou 11 de 64 bits) e instalar algumas dependências: O **python** e o **Compactador**.
 
@@ -67,7 +120,7 @@ Antes de tudo, abra o Windows Explorer e garanta a exibição das extensões dos
 ![](images/winexplorer_show_extension.png)
 
 
-### 1.1 python
+### 2.1 python
 Python é uma linguagem de programação de propósito genérico ao qual o Zipsender e seus apps dependentes foram construídos.
 
 #### Para obter o python:
@@ -78,7 +131,7 @@ Python é uma linguagem de programação de propósito genérico ao qual o Zipse
 
 ![](images/python_installer.png)
 
-### 1.2 Compactadores-Winrar ou 7zip
+### 2.2 Compactadores-Winrar ou 7zip
 Winrar ou 7zip são softwares compactadores que permitem agregar vários arquivos dentro de um único arquivo, facilitando o envio/recebimento de todo o 'pacote de arquivos' como um único arquivo.
 
 App [Winrar](https://www.win-rar.com/predownload.html?&L=9)
@@ -133,7 +186,7 @@ Execute apenas uma das formas.
 - Digite `7z` ou `7za` (um dos dois funciona, dependendo da versão do seu windows) no terminal aberto e tecle `[Enter]`. Deve aparecer informações sobre o programa.
 - Não se desespere com a quantidade de informação na tela. hehe É só um teste para saber se o comando está sendo reconhecido. Pode fechar a janela do terminal. :)
 
-## 2 Localização
+## 3 Localização
 
 > Importante\
 > A aplicação deve ser colocada dentro de uma pasta na raiz de uma unidade do seu pc. Ex.: `D:/zipsender`\
@@ -143,13 +196,13 @@ Você pode adquirir o zipsender pelo modo simples ou avançado.
 
 Recomendamos o modo simples para quem não deseja investir tempo aprendendo o processo de configuração e customização neste momento. Escolha um modo.
 
-### 1 - Modo simples - Kit configurado em ptbr
+### 3.1 - Modo simples - Kit configurado em ptbr
 
 1. Acesse o canal do [telegram do zipsender](https://t.me/zipsender) e baixe a última versão já configurada em ptbr.
 
 2. Descompacte numa pasta na raiz de uma unidade do pc, conforme sugerido anteriormente.
 
-### 2 - Modo avançado - Construa e configure do zero
+### 3.2 - Modo avançado - Construa e configure do zero
 
 Baixe a aplicação:
 
@@ -181,19 +234,19 @@ Para facilitar o processo, tudo foi resumido à execução de 1 arquivo.
 ![](images/image30.png)
 
 
-## 3 Como ativar o fluxo contínuo
+## 4 Como ativar o fluxo contínuo
 
 - Acesse a pasta do Zipsender e execute o arquivo "`zipsender_zip.bat`”.
 - Note que apareceu uma pasta chamada `1-tozip`, `2-zipped`, `3-toupload` e `4-uploaded`, que representam cada etapa da fila de processo.
 - Será aberto um `terminal` sem nenhuma informação na tela. Isso é normal, pois não há projeto autorizado no local de início do processo.
 
-### 3.1 - Ativando a esteira automática de empacotamento
+### 4.1 - Ativando a esteira automática de empacotamento
 
 - Mova a pasta do projeto que você deseja fatiar e enviar para o telegram, para o local configurado com início do processo. Atualmente é a pasta `1-tozip` dentro da pasta do zipsender.
 - Renomeie a pasta do projeto adicionando um sublinhado como primeiro caracter do nome da pasta. Ou seja, se a pasta se chamava "`minhas coisas-2020`", ela deverá ser renomeada para "`_minhas coisas-2020`".
 - Volte para a janela do terminal do `zipsender_zip` e note que automaticamente o projeto foi identificado e começou a ser processado. Depois de processado, os arquivos empacotados em modo independente serão movidos para a pasta `3-toupload`. Já a pasta original do projeto será movida para a pasta `2-zipped`.
 
-### 3.2 - Ativando a esteira automática de envio
+### 4.2 - Ativando a esteira automática de envio
 
 O zipsender envia automaticamente e indefinidamente os projetos empacotados e fatiados para um canal ou grupo do telegram.
 
@@ -241,7 +294,7 @@ Agora sim, poderemos configurar:
   - Na mensagem perguntando se o número está correto, digite `y`.
   - Será solicitado um código de autenticação que o telegram enviou no seu app do celular/desktop. Confira lá e digite no terminal.
   - Se você tiver 'segurança de 2 fatores' (2fa) ativado na sua conta, será solicitado sua senha pessoal.
-  - Tendo realizado a conexão, repare que apareceu o arquivo `user.session` na pasta do zimatise. Este arquivo representa a ponte de conexão do zipsender com sua conta do telegram. Enquanto ele estiver válido, você não precisará mais digitar api_id e api_hash para usar o zipsender. Caso ele seja deletado, o zipsender será incapaz de se conectar com sua conta do telegram e um novo processo de conexão será necessário. Suas credenciais não serão salvas em local algum.
+  - Tendo realizado a conexão, repare que apareceu o arquivo `user.session` na pasta do Zipsender. Este arquivo representa a ponte de conexão do zipsender com sua conta do telegram. Enquanto ele estiver válido, você não precisará mais digitar api_id e api_hash para usar o zipsender. Caso ele seja deletado, o zipsender será incapaz de se conectar com sua conta do telegram e um novo processo de conexão será necessário. Suas credenciais não serão salvas em local algum.
 - Com a conexão configurada, quando a esteira de empacotamento (zipsender_zio.bat) finalizar a geração dos arquivos fatiados de algum projeto, esta esteira de envio (zipsender_send) detectará o projeto e começará o envio para o telegram!
 
 Cumprindo bem todos os passos anteriores, será questão de tempo para o projeto começar a aparecer no grupo/canal destino em fatias independentes.
