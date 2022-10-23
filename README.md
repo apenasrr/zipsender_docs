@@ -1,7 +1,7 @@
 
 # GUIA DO ZIPSENDER - Fatia independente, envia pro Telegram
 
-Versão v103
+Versão v104
 
 ## Sumário
 
@@ -312,11 +312,23 @@ Agora tudo será enviado com o tempo. Parabéns! \ o /
 
 ## Customização e maiores detalhes
 
+**descrição do primeiro arquivo de cada projeto**
+
 O zipsender é bem customizável. A descrição do primeiro arquivo de cada projeto pode ter seu padrão definido pelo arquivo `custom_description.txt`.
+
+**capa**
 
 Se a pasta do projeto contiver uma imagem chamada `cover` (seja arquivo jpg, png ou gif), ela será identificada como Capa e automaticamente postada ao topo do envio.
 
+**descrição do projeto em arquivo de texto**
+
 Se a pasta do projeto contiver um arquivo de texto chamado `description.txt`, ele será identificado como Descrição e automaticamente postado abaixo da capa na fila de envio.
+
+**adicionar link na legenda do relatório de conteúdo**
+
+É possível incluir um link na legenda do post de 'relatório de conteúdo'. É útil para informar um link de canal alternativo para acessar o material que está sendo postado. Para este processo ser configurado por padrão, a pasta original do projeto deve conter um arquivo json chamado `.config` com chave `stream_link`. Ex.: `{"stream_link": "t.me/blablabla"}`
+
+**e mais...**
 
 Outras customizações podem ser realizadas pelo arquivo `config.ini`. Vamos passar rapidamente pelas variáveis deste arquivo que podem ser customizadas.
 
@@ -367,7 +379,7 @@ Seus amigos vão adorar ^^
 
 ---
 
-`Já copia e cola no PV daquele teu amigo nerd haha`
+`Já copia e cola no PV daquele teu amigo nerd hehe`
 
 
 olha o que descobri! com o [Zipsender](t.me/zipsender) dá pra postar várias pastas do meu PC para o telegram. Tudo automático, em zips independentes e ainda economizo espaço no meu HD. show demais! tem tutorial
